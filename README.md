@@ -16,12 +16,12 @@ Each version of the site has been given two of the six vulnerabilities. (In othe
 
 ## Blue
 
-# Vulnerability #1: SQLI
+### Vulnerability #1: SQLI
 For this attack, login and navigate to a salespersons information. In the URL, replace the id as your SQL injection. In this case, I added `' OR SLEEP(10) = 0 -- '`. This will make the webpage load for 10 seconds when refreshed. In this case, I timed how long the webpage loaded after refreshing, and it took approximately 10 seconds, which indicates the attack was successful.
 
 <img src="https://media.giphy.com/media/2AKMsJjfRDpEq1D7C4/giphy.gif" />
 
-# Vulnerability #2: Session Hijacking/Fixation
+### Vulnerability #2: Session Hijacking/Fixation
 Using a tool provided by the site `public/hacktools/change_session_id.php` I was able to obtain and change the session ID for a given session. In Chrome, I logged in, and then copied that session ID. Then I opened an entirely new browser, and used the tool to change my session ID to the same one I got in Chrome. Once the session ID was changed, I was able to click login, and I was immediately logged in without the need for a username or password.
 
 <img src="https://media.giphy.com/media/QJsUDwH1uZTfTOqElo/giphy.gif" />
@@ -29,12 +29,12 @@ Using a tool provided by the site `public/hacktools/change_session_id.php` I was
 
 ## Green
 
-# Vulnerability #1: XSS
+### Vulnerability #1: XSS
 To perform an XSS attack, naviagate to the contact tab. Within the feedback textbox, input JavaScript code between a `<script>` tag. Then, whenever a logged in user views the page containing the feedback, the script will be run. In my case, there were also other people performing XSS attacks, so my attack is the third (and last) alert.
 
 <img src="https://media.giphy.com/media/NlXIOZzavdVUAjjYpO/giphy.gif" />
 
-# Vulnerability #2: User Enumeration
+### Vulnerability #2: User Enumeration
 To determine if a username exists for this site, navigate to the login page. Using a known username `jmonroe99` for testing, when logging in with this (correct username), but incorrect password, the webpage displays **Log in was unsuccessful.** When using an incorrect username, the same message is output, except it is not boldface. This indicates that the server is handling correct usernames and incorrect usernames differently, thus allowing an attacker to determine if a username is valid or not.
 
 <img src="https://media.giphy.com/media/88iGARxsPFPAaKQ4RR/giphy.gif" />
@@ -42,13 +42,13 @@ To determine if a username exists for this site, navigate to the login page. Usi
 
 ## Red
 
-# Vulnerability #1: IDOR
+### Vulnerability #1: IDOR
 This attack is quite easy. As a logged in user, navigate to a salesperson page that is private. Take note of the ID in the URL. Then logout, and navigate to salespeople as a non-logged in user. Edit the ID in the URL to the private salesperson ID, and you will be able to see private information.
 
 <img src="https://media.giphy.com/media/1zjRzUvUm4gTs9eaw4/giphy.gif" />
 
 
-# Vulnerability #2: CSRF
+### Vulnerability #2: CSRF
 First, create an html document that contains a hidden form like this:
 
 ``<html>
